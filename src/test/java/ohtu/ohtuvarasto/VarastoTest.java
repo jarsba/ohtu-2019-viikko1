@@ -65,4 +65,64 @@ public class VarastoTest {
         assertEquals(4, varasto.paljonkoMahtuu(), vertailuTarkkuus);
     }
 
+    @Test
+    public void varastonLuontiNegatiivinenTilavuus() {
+        varasto = new Varasto(-10);
+        assertEquals(varasto.getTilavuus(), 0, vertailuTarkkuus);
+    }
+
+    @Test
+    public void varastonLuontiSaldoIsompi() {
+        varasto = new Varasto(5, 10);
+        assertEquals(varasto.getTilavuus(), 5, vertailuTarkkuus);
+        assertEquals(varasto.getSaldo(), 5, vertailuTarkkuus);
+    }
+
+    @Test
+    public void varastonLuontiOikeatParametrit() {
+        varasto = new Varasto(10, 2);
+        assertEquals(varasto.getTilavuus(), 10, vertailuTarkkuus);
+        assertEquals(varasto.getSaldo(), 2, vertailuTarkkuus);
+    }
+
+    @Test
+    public void varastonLuontiVaaratParametrit() {
+        varasto = new Varasto(-1, -1);
+        assertEquals(varasto.getTilavuus(), 0, vertailuTarkkuus);
+        assertEquals(varasto.getSaldo(), 0, vertailuTarkkuus);
+    }
+
+    @Test
+    public void lisaaNegatiivinenMaara() {
+        double vanhaSaldo = varasto.getSaldo();
+        varasto.lisaaVarastoon(-1);
+        assertEquals(vanhaSaldo, varasto.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void lisaaLiikaa() {
+        varasto.lisaaVarastoon(varasto.paljonkoMahtuu() + 1);
+        assertEquals(varasto.getTilavuus(), varasto.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void otaNegatiivinenMaara() {
+        double vanhaSaldo = varasto.getSaldo();
+        varasto.otaVarastosta(-1);
+        assertEquals(vanhaSaldo, varasto.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void otaLiikaa() {
+        double saldo = varasto.getSaldo();
+        varasto.otaVarastosta(saldo + 1);
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void vertaaToString() {
+        double saldo = varasto.getSaldo();
+        double mahtuu = varasto.paljonkoMahtuu();
+        assertEquals("saldo = " + saldo + ", vielä tilaa " + mahtuu, varasto.toString());
+    }
 }
