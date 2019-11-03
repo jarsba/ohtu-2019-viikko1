@@ -119,6 +119,8 @@ public class VarastoTest {
         assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
     }
 
+    // comment
+
     @Test
     public void vertaaToString() {
         double saldo = varasto.getSaldo();
