@@ -123,6 +123,6 @@ public class VarastoTest {
     public void vertaaToString() {
         double saldo = varasto.getSaldo();
         double mahtuu = varasto.paljonkoMahtuu();
-        assertEquals("ronaldo = " + saldo + ", vielä tilaa " + mahtuu, varasto.toString());
+        assertEquals("saldo = " + saldo + ", vielä tilaa " + mahtuu, varasto.toString());
     }
 }
