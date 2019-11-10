@@ -6,6 +6,17 @@
  * user guide available at https://guides.gradle.org/creating-new-gradle-builds/
  */
 
+plugins {
+    id 'checkstyle'
+}
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.enabled false
+        html.enabled true
+    }
+}
+
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
 
@@ -51,3 +62,5 @@ jacocoTestReport {
         })
     }
 }
+
+
